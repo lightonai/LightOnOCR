@@ -1,0 +1,9 @@
+model,pipeline,all_categories,baseline,forms,graphics,handwritten,long_table,long_table2,multicolumn,tiny_text,scorer,date
+LightOnOCR-3-4B,loocr_grounding_parse_with_layout,0.741,0.983,0.496,0.705,0.461,0.836,0.717,0.836,0.883,benchpdf2md ceab154,2026-10-06
+LightOnOCR-3-0.8B,loocr_grounding_parse_with_layout,0.705,0.984,0.478,0.714,0.333,0.709,0.680,0.806,0.854,benchpdf2md ceab154,2026-10-07
+LightOnOCR-3-1B,loocr_grounding_parse_with_layout,0.696,0.968,0.401,0.708,0.370,0.821,0.730,0.776,0.807,benchpdf2md ceab154,2026-10-07
+chandra-ocr-2,chandra2_vllm,0.690,0.997,0.391,0.751,0.261,0.813,0.793,0.733,0.769,benchpdf2md ceab154,2026-09-28
+dots.mocr,dots_ocr_1_5_parse,0.593,0.988,0.423,0.266,0.182,0.590,0.572,0.770,0.867,benchpdf2md ceab154,2026-09-28
+surya-ocr-2,surya2_sdk,0.541,0.998,0.219,0.263,0.024,0.746,0.676,0.770,0.730,benchpdf2md ceab154,2026-09-28
+mistral-ocr-4-1,mistral_ocr_4_1_annotation,0.541,0.959,0.394,0.558,0.115,0.694,0.598,0.733,0.574,benchpdf2md ceab154,2026-09-28
+jina-ocr-v1,jinaocr_vllm,0.532,0.996,0.201,0.331,0.030,0.791,0.691,0.745,0.665,benchpdf2md ceab154,2026-09-28

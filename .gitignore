@@ -1,0 +1,18 @@
+# Python / tooling
+.venv/
+__pycache__/
+.ruff_cache/
+*.egg-info/
+dist/
+.DS_Store
+
+# Secrets
+.env
+
+# lightonocr runs: `lightonocr <file>` writes out/<name>/
+out/
+
+# Benchmarks, downloaded or generated (see benchmarks/README.md): datasets, outputs, pinned upstream checkouts
+/benchmarks/data/
+/benchmarks/runs/
+/benchmarks/third_party/

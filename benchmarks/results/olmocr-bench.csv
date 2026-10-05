@@ -1,0 +1,15 @@
+model,pipeline,overall,ci95,overall_excl_headers_footers,arxiv_math,headers_footers,long_tiny_text,multi_column,old_scans,old_scans_math,tables,baseline,scorer,date
+Infinity-Parser2-Pro,inf-mllm-eval-postproc,86.9,0.9,85.7,88.4,95.1,92.5,83.9,57.6,87.8,89.9,100.0,olmocr f7cfe4c,2026-09-25
+LightOnOCR-3-4B,loocr_grounding_omit_margins+pp3,86.1,0.8,85.6,91.0,89.3,93.7,85.3,51.7,88.6,89.5,99.4,olmocr 0.4.27,2026-10-08
+Infinity-Parser2-Pro,inf-mllm-eval-raw,85.9,0.8,84.6,87.6,95.1,92.5,81.3,57.6,83.6,89.1,100.0,olmocr f7cfe4c,2026-09-25
+chandra-ocr-2,datalab-eval-postproc,85.8,0.8,85.0,86.9,91.3,93.7,82.1,51.3,89.1,92.1,99.9,olmocr 0.4.27,2026-09-30
+LightOnOCR-3-0.8B,loocr_grounding_omit_margins+pp3,85.4,0.8,85.0,89.5,87.9,94.1,85.3,47.9,87.6,91.2,99.7,olmocr 0.4.27,2026-10-08
+LightOnOCR-3-4B,loocr_grounding_omit_margins,85.4,0.9,84.9,90.3,89.3,93.7,84.4,51.7,86.7,88.1,99.4,olmocr 0.4.27,2026-10-08
+chandra-ocr-2,datalab-eval-raw,85.1,0.9,84.4,86.9,89.9,93.4,81.0,50.0,89.1,90.4,99.9,olmocr 0.4.27,2026-09-30
+LightOnOCR-3-0.8B,loocr_grounding_omit_margins,84.7,0.9,84.2,88.8,87.9,94.1,84.6,47.9,84.7,89.8,99.7,olmocr 0.4.27,2026-10-08
+LightOnOCR-3-1B,loocr_grounding_omit_margins+pp3,84.5,0.9,84.0,90.4,87.6,93.7,85.9,48.3,80.6,89.9,99.5,olmocr 0.4.27,2026-10-08
+LightOnOCR-3-1B,loocr_grounding_omit_margins,84.0,0.9,83.5,89.9,87.6,93.7,85.2,48.3,79.0,88.7,99.5,olmocr 0.4.27,2026-10-08
+mistral-ocr-4-1,mistral_ocr_4_1_no_hf,81.9,0.9,80.6,82.6,91.4,91.2,84.5,47.9,72.3,85.9,99.5,olmocr 0.4.27,2026-09-28
+mistral-ocr-4-1,mistral_ocr_4_1_annotation,72.4,1.0,80.1,82.8,18.8,91.4,85.7,42.0,72.1,87.0,99.6,olmocr 0.4.27,2026-09-28
+cohere-parse-5,cohere_parse_v5,71.1,1.1,76.8,84.4,31.4,72.2,82.7,38.4,71.8,88.7,99.4,olmocr 0.4.27,2026-09-28
+OvisOCR2,ovisocr2_vllm,70.5,1.0,78.1,88.3,17.6,77.8,83.7,33.8,76.6,88.7,97.3,olmocr 0.4.27,2026-09-28

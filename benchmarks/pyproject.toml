@@ -1,0 +1,64 @@
+[project]
+name = "ocr-bench"
+version = "0.1.0"
+description = "Reproducible OCR and document-parsing benchmarks: ParseBench, olmOCR-bench and fr-bench-pdf2md with ParseBench's providers"
+readme = "README.md"
+license = "Apache-2.0"  # LICENSE is at the repository root
+keywords = ["ocr", "document-parsing", "benchmark", "vllm", "parsebench", "olmocr-bench"]
+authors = [
+    { name = "Baptiste Aubertin", email = "baptiste.aubertin@lighton.ai" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # A main commit: cohere_parse, jinaocr and ovisocr2 are not in a release yet.
+    # [llamaparse] is needed by the layout evaluator.
+    # ocr_bench/runner.py and providers/ import private helpers of parse-bench (_extract_markdown_and_layout,
+    # _inject_image_annotations, _load_elements, _build_layout_page, _render_pages): recheck them on a bump.
+    "parse-bench[openai,llamaparse] @ git+https://github.com/run-llama/ParseBench.git@78264d0da97b8f692e34d59c41074ccc61d10c09",
+    # Imported by parse-bench providers but not declared by it.
+    "aiohttp==3.14.3",
+    "httpx==0.28.1",
+    "pypdf==6.19.0",
+    "python-dotenv==1.2.3",
+    "requests==2.34.2",
+    # ocr-bench predict surya (chandra converts surya's HTML to markdown).
+    "surya-ocr==0.22.1",
+    "chandra-ocr==0.2.0",
+    "torch==2.14.0",
+    "torchvision==0.29.0",
+    "huggingface-hub==1.32.0",
+    "olmocr[bench]==0.4.27",
+    "infinity-parser2==0.4.0",
+    # chandra's olmocr_bench.py post-processing (scripts/olmocr-bench-datalab.py).
+    "unicodeit==0.7.5",
+    # The repository's own client package: LightOnOCR output post-processing (lightonocr.postprocess).
+    "lightonocr",
+]
+
+[project.scripts]
+ocr-bench = "ocr_bench.cli:main"
+
+# GPU inference runs in vLLM containers: CPU torch is enough.
+[tool.uv.sources]
+lightonocr = { path = "..", editable = true }
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 130
+extend-exclude = ["data", "runs", "third_party"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]

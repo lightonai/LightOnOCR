@@ -1,0 +1,6 @@
+model,pipeline,overall,tables,charts,content_faithfulness,semantic_formatting,visual_grounding,published_overall,scorer,date
+LightOnOCR-3-4B,loocr_grounding_parse_with_layout,75.14,83.79,66.14,89.85,67.56,68.34,,parse-bench 78264d0,2026-10-06
+LightOnOCR-3-0.8B,loocr_grounding_parse_with_layout,74.61,84.51,64.67,88.91,66.72,68.23,,parse-bench 78264d0,2026-10-07
+KDL-Frontier-Parser-nano,kdl_frontier_nano,72.39,85.92,58.57,87.69,54.98,74.81,76.36,parse-bench 78264d0,2026-09-24
+LightOnOCR-3-1B,loocr_grounding_parse_with_layout,71.40,84.84,57.30,88.62,64.49,61.74,,parse-bench 78264d0,2026-10-07
+cohere-parse-5,cohere_parse_v5,50.22,87.23,1.01,86.70,67.16,9.00,,parse-bench 78264d0,2026-09-24

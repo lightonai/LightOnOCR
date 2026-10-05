@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LightOnOCR</title>
+<link rel="icon" type="image/png" href="/static/favicon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<aside id="sidebar">
+  <a class="brand" href="/" title="LightOnOCR viewer">
+    <picture>
+      <source srcset="/static/lighton-dark.svg" media="(prefers-color-scheme: dark)">
+      <img class="logo" src="/static/lighton.svg" alt="LightOn" width="89" height="25">
+    </picture>
+    <span class="brand-sub">OCR</span>
+  </a>
+  <button id="new-run" class="primary">New run</button>
+  <a class="promo" href="https://huggingface.co/blog/lightonai/lightonocr-3" target="_blank" rel="noopener">
+    <img src="/static/favicon.png" alt="" width="22" height="22">
+    <span><b>LightOnOCR-3 blog post</b><small>How the model was built</small></span>
+    <i>↗</i>
+  </a>
+  <div class="runs-head"><span>Runs</span><span id="runs-count"></span></div>
+  <nav id="runs" class="runs"></nav>
+  <button type="button" id="endpoint" class="endpoint" title="Model server settings"><i id="endpoint-dot" class="dot"></i><span id="endpoint-url">…</span></button>
+  <div id="info" class="sidebar-foot"></div>
+</aside>
+
+<main id="main">
+  <header class="toolbar idle">
+    <button id="menu" class="icon" aria-label="Runs">☰</button>
+    <h1 id="title"></h1>
+    <span id="mode" class="badge"></span>
+    <span class="spacer"></span>
+    <div class="group" title="Page (← →)">
+      <button id="prev" aria-label="Previous page">‹</button>
+      <input id="pageno" type="number" min="1" aria-label="Page number">
+      <span id="count"></span>
+      <button id="next" aria-label="Next page">›</button>
+    </div>
+    <div class="group" title="Zoom (+ − 0)">
+      <button id="zoom-out" aria-label="Zoom out">−</button>
+      <button id="zoom-fit" class="text" title="Fit the whole page (0)">Fit</button>
+      <button id="zoom-in" aria-label="Zoom in">+</button>
+    </div>
+    <button id="raw" class="toggle" aria-pressed="false" title="Raw model output (r)">Raw</button>
+    <a class="site-btn" href="https://lighton.ai" target="_blank" rel="noopener" title="LightOn website">lighton.ai ↗</a>
+  </header>
+
+  <!-- The open run: the page with its boxes on the left, the transcription on the right -->
+  <section id="viewer" class="viewer" hidden>
+    <div class="pane" id="left"><div class="page" id="page"><img id="img" alt=""></div></div>
+    <div class="pane" id="right"><div class="filters" id="filters"></div><div class="panel" id="panel"></div></div>
+  </section>
+
+  <section id="empty" class="empty-state">
+    <div>
+      <h2>No run open</h2>
+      <p>Pick a run in the sidebar, or drop a PDF or image anywhere to start one.</p>
+    </div>
+  </section>
+</main>
+
+<div id="dropzone" class="dropzone" hidden>Drop to start a run</div>
+
+<dialog id="new-run-dialog">
+  <form id="new-run-form" class="sheet">
+    <h2>New run</h2>
+    <label class="file" id="file-label">
+      <input type="file" id="file" accept=".pdf,image/*" hidden>
+      <span id="file-text">Choose a PDF or image…</span>
+    </label>
+    <div class="field">
+      <span>Mode</span>
+      <div class="segmented">
+        <label><input type="radio" name="mode" value="grounding" checked><span>grounding</span></label>
+        <label><input type="radio" name="mode" value="plain"><span>plain</span></label>
+      </div>
+      <p id="grounding-note" class="hint-line">Grounding is available on LightOnOCR-3 only, not on LightOnOCR-1 and LightOnOCR-2.</p>
+    </div>
+    <label class="field"><span>Pages</span><input id="pages" placeholder="all, or 1,3-5"></label>
+    <label class="field"><span>Name</span><input id="name" placeholder="folder in out/"></label>
+    <p id="form-error" class="error" hidden></p>
+    <div class="actions">
+      <button type="button" id="cancel" class="toggle">Cancel</button>
+      <button type="submit" id="submit" class="primary">Run OCR</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="settings-dialog">
+  <form id="settings-form" class="sheet">
+    <h2>Model server</h2>
+    <label class="field"><span>vLLM base URL <em>(empty: environment or default)</em></span><input id="base-url" placeholder="http://127.0.0.1:8010/v1"></label>
+    <label class="field"><span>Model <em>(empty: the first model the server lists)</em></span><input id="model-name" placeholder="auto"></label>
+    <p id="endpoint-status" class="status"></p>
+    <div class="actions">
+      <button type="button" id="settings-cancel" class="toggle">Cancel</button>
+      <button type="submit" id="settings-save" class="primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@14.1.3/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>
